@@ -1,14 +1,23 @@
+# This is a simple GitHub Actions workflow named "First Workflow."
+# It defines one job named "first-job" to print a greeting and a goodbye message.
+
 name: First Workflow
+
+# Define the events that trigger this workflow to run.
+# 'workflow_dispatch' event allows manual triggering of the workflow from the GitHub Actions UI.
 on: workflow_dispatch
-jobs:  
-  first-job: 
+
+jobs:
+  first-job:
+    # Define the runner environment for the 'first-job' job.
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Print a greeting message.
       - name: Print greeting
         run: |
           echo "Hello World"
           echo "Have a great day!"
+
+      # Step 2: Print a goodbye message.
       - name: Print goodbye
         run: echo "Done - bye!"
-
-

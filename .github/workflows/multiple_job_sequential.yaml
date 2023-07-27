@@ -1,38 +1,51 @@
+# This is a GitHub Actions workflow for a Go project.
+# It defines two jobs: 'test' and 'build', to run tests and build the project respectively.
+
 name: Go
 
+# Define the events that trigger this workflow to run.
+# 'push' event triggers the workflow when new code is pushed to the repository.
+# 'workflow_dispatch' event allows manual triggering of the workflow from the GitHub Actions UI.
 on: [push, workflow_dispatch]
-  
 
 jobs:
-
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Download Code
-      uses: actions/checkout@v3
+      # Step 1: Download the code from the repository.
+      - name: Download Code
+        uses: actions/checkout@v3
   
-    - name: Set up Golang
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.20'
+      # Step 2: Set up Golang environment with the specified version and cache dependencies.
+      - name: Set up Golang
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+          cache-dependency-path: simple-task/go.sum
         
-    - name: Test
-      working-directory: ./simple-task
-      run: go test -v .
+      # Step 3: Run tests using 'go test' command.
+      - name: Test
+        working-directory: ./simple-task
+        run: go test -v .
    
   build:
+    # This job depends on the successful completion of the 'test' job.
+    # It will run only if the 'test' job finishes successfully.
     needs: test
     runs-on: ubuntu-latest
     steps: 
-    - name: Download Code
-      uses: actions/checkout@v3
+      # Step 1: Download the code from the repository.
+      - name: Download Code
+        uses: actions/checkout@v3
       
-    - name: Set up Golang
-      uses: actions/setup-go@v4
-      with:
-        cache-dependency-path: simple-task/go.sum
-        go-version: '1.20'
+      # Step 2: Set up Golang environment with the specified version and cache dependencies.
+      - name: Set up Golang
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+          cache-dependency-path: simple-task/go.sum
       
-    - name: Build
-      working-directory: ./simple-task
-      run: go build -v .
+      # Step 3: Build the project using 'go build' command.
+      - name: Build
+        working-directory: ./simple-task
+        run: go build -v .

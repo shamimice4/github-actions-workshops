@@ -6,7 +6,10 @@ name: Go
 # Define the events that trigger this workflow to run.
 # 'push' event triggers the workflow when new code is pushed to the repository.
 # 'workflow_dispatch' event allows manual triggering of the workflow from the GitHub Actions UI.
-on: [push, workflow_dispatch]
+
+# on: [push, workflow_dispatch]
+
+on: workflow_dispatch
 
 jobs:
   test:

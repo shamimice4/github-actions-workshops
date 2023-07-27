@@ -1,4 +1,4 @@
-# This is a GitHub Actions workflow for a Go project.
+# Following is a GitHub Actions workflow for a Go project.
 # It defines two jobs: 'test' and 'build', to run tests and build the project respectively.
 
 name: Go

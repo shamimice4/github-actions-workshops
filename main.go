@@ -8,7 +8,7 @@ import (
 func main() {
 	// Define the function that handles incoming requests
 	handler := func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "Hello, Everyone! Have a nice Day")
+		fmt.Fprint(w, "Hello, Everyone! Have a nice Weekend")
 	}
 
 	// Register the handler function to handle all requests to the root URL path

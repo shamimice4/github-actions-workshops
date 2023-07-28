@@ -11,10 +11,8 @@ on:
       types: [ opened ]
     pull_request_review_comment:
       types: [ created ]
-
-  jobs:
-  
-    welcome:
+jobs:
+     welcome:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@main

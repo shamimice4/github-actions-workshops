@@ -40,7 +40,7 @@ jobs:
             path: |
               ~/.cache/go-build
               ~/go/pkg/mod
-            key: ${{ runner.os }}-golang-${{ hashFiles('**/go.sum') }}
+            key: ${{ runner.os }}-golang-${{ hashFiles('./simple-task/go.sum') }}
       - name: Set up Golang
         uses: actions/setup-go@v4
         with:

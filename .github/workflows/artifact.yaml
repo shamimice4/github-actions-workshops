@@ -39,8 +39,31 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with: 
-            name: myapp-artifact
+            name: webapp-artifact
             path: ./simple-task/webapp
 
-
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+    permissions:
+        id-token: write
+        contents: read
+    steps:
+        - name: Get build artifacts
+          uses: actions/download-artifact@v3
+          with:
+            name: webapp-artifact
+        - name: View artifact
+          run: |
+           ls
+           echo "s3://${{ secrets.S3_BUCKET_NAME }}"
+        # - name: Configure AWS credentials 
+        #   uses: aws-actions/configure-aws-credentials@v2
+        #   with:
+        #     role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        #     aws-region: ${{ secrets.AWS_REGION }}
+        # - name: Copy files to the test website with the AWS CLI
+        #   run: |
+        #     aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }}
         

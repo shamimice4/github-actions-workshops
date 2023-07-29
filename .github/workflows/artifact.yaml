@@ -1,4 +1,4 @@
-name: artifact-generate
+name: generate-artifact-s3-upload
 
 on: workflow_dispatch
 
@@ -13,7 +13,7 @@ jobs:
         with:
           go-version: '1.20'
           cache-dependency-path: simple-task/go.sum
-      - name: Test
+      - name: Execute test
         working-directory: ./simple-task
         run: go test -v .
    
@@ -50,14 +50,10 @@ jobs:
         id-token: write
         contents: read
     steps:
-        - name: Get build artifacts
+        - name: Get artifacts
           uses: actions/download-artifact@v3
           with:
             name: webapp-artifact
-        - name: View artifact
-          run: |
-           ls
-           echo "s3://${{ secrets.S3_BUCKET_NAME }}"
         - name: Configure AWS credentials 
           uses: aws-actions/configure-aws-credentials@v2
           with:

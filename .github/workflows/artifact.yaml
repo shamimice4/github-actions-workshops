@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
             name: myapp-artifact
-            path: ./webapp
+            path: ./simple-task/webapp
 
 
         

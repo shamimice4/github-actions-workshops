@@ -1,0 +1,41 @@
+name: Go
+
+on: workflow_dispatch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Code
+        uses: actions/checkout@v3
+      - name: Set up Golang
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+          cache-dependency-path: simple-task/go.sum
+      - name: Test
+        working-directory: ./simple-task
+        run: go test -v .
+   
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps: 
+      - name: Download Code
+        uses: actions/checkout@v3
+      - name: Set up Golang
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+          cache-dependency-path: simple-task/go.sum
+      - name: Build
+        working-directory: ./simple-task
+        run: go build -v webapp
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with: 
+            name: myapp-artifact
+            path: ./webapp
+
+
+        

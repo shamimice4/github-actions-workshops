@@ -12,7 +12,7 @@ jobs:
       - name: Set up Golang
         uses: actions/setup-go@v4
         with:
-          go-version: ./simple-task/go.mod
+          go-version-file: simple-task/go.mod
           cache-dependency-path: simple-task/go.sum
       - name: Setup Golang caches
         uses: actions/cache@v3
@@ -42,7 +42,7 @@ jobs:
       - name: Set up Golang
         uses: actions/setup-go@v4
         with:
-          go-version: ./simple-task/go.mod
+          go-version-file: simple-task/go.mod
           cache-dependency-path: simple-task/go.sum
       - name: Setup Golang caches
         uses: actions/cache@v3

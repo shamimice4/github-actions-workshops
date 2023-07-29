@@ -9,11 +9,6 @@ jobs:
     steps:
       - name: Download Code
         uses: actions/checkout@v3
-      - name: Set up Golang
-        uses: actions/setup-go@v4
-        with:
-            go-version-file: simple-task/go.mod
-            cache-dependency-path: simple-task/go.sum
       - name: Setup Golang caches
         uses: actions/cache@v3
         with:
@@ -21,6 +16,12 @@ jobs:
                 ~/.cache/go-build
                 ~/go/pkg/mod
           key: ${{ runner.os }}-golang-${{ hashFiles('**/go.sum') }}
+          lookup-only: true
+      - name: Set up Golang
+        uses: actions/setup-go@v4
+        with:
+            go-version-file: simple-task/go.mod
+            cache-dependency-path: simple-task/go.sum
       - name: Test
         working-directory: ./simple-task
         run: go test -v .
@@ -41,11 +42,13 @@ jobs:
               ~/.cache/go-build
               ~/go/pkg/mod
             key: ${{ runner.os }}-golang-${{ hashFiles('./simple-task/go.sum') }}
+            lookup-only: true
       - name: Set up Golang
         uses: actions/setup-go@v4
         with:
           go-version-file: simple-task/go.mod
           cache-dependency-path: simple-task/go.sum
+
       
       # Step 3: Build the project using 'go build' command.
       - name: Build

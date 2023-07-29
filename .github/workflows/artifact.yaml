@@ -31,6 +31,11 @@ jobs:
       - name: Build
         working-directory: ./simple-task
         run: go build -v webapp
+      - name: view files
+        run: |
+         ls -la
+         cd simple-task
+         ls -la
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with: 

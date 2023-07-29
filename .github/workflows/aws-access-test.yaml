@@ -1,4 +1,4 @@
-name: aws-access-test
+name: AWS Access - test
 
 on: workflow_dispatch
 

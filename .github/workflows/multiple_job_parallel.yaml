@@ -1,7 +1,7 @@
 # Following is a GitHub Actions workflow for a Go project.
 # It defines two jobs: 'test' and 'build', to run tests and build the project respectively.
 
-name: Mutliple Job Parallel
+name: Mutliple Job - Parallel
 
 # Define the events that trigger this workflow to run.
 # 'push' event triggers the workflow when new code is pushed to the repository.

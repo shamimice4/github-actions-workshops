@@ -1,4 +1,4 @@
-name: generate-artifact-s3-upload
+name: Artifact to S3 Bucket
 
 on: workflow_dispatch
 

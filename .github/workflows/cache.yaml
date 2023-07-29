@@ -1,6 +1,6 @@
 # https://github.com/actions/cache
 # Examples by language: https://github.com/actions/cache#implementation-examples
-name: Cache-test-golang
+name: Caching - Golang
 on: workflow_dispatch
 
 jobs:

@@ -9,14 +9,6 @@ jobs:
     steps:
       - name: Download Code
         uses: actions/checkout@v3
-      - name: Setup Golang caches
-        uses: actions/cache@v3
-        with:
-          path: |
-                ~/.cache/go-build
-                ~/go/pkg/mod
-          key: ${{ runner.os }}-golang-${{ hashFiles('**/go.sum') }}
-          lookup-only: true
       - name: Set up Golang
         uses: actions/setup-go@v4
         with:
@@ -35,14 +27,6 @@ jobs:
       # Step 1: Download the code from the repository.
       - name: Download Code
         uses: actions/checkout@v3
-      - name: Setup Golang caches
-        uses: actions/cache@v3
-        with:
-            path: |
-              ~/.cache/go-build
-              ~/go/pkg/mod
-            key: ${{ runner.os }}-golang-${{ hashFiles('./simple-task/go.sum') }}
-            lookup-only: true
       - name: Set up Golang
         uses: actions/setup-go@v4
         with:

@@ -1,7 +1,7 @@
 # This is a simple GitHub Actions workflow named "First Workflow."
 # It defines one job named "first-job" to print a greeting and a goodbye message.
 
-name: First Workflow
+name: Geeting Started
 
 # Define the events that trigger this workflow to run.
 # 'workflow_dispatch' event allows manual triggering of the workflow from the GitHub Actions UI.

@@ -16,11 +16,11 @@ jobs:
           run: |
             cat test.sh
         - name: Remove file
-          if: steps.file-read.outcome == 'success'
+          if: success() && steps.file-read.outcome == 'success'
           run: |
             rm -rf text.txt
         - name: List file 
-          if: steps.file-read.outcome == 'failure'
+          if: failure() && steps.file-read.outcome == 'failure'
           run: | 
             ls -la 
 

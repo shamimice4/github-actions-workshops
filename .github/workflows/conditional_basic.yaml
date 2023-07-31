@@ -21,7 +21,7 @@ jobs:
         steps:
             - name: View File Contents
               run: |
-               cat test.text
+               cat test.txt
 
     list_files:
         needs: [create_file, view_file]

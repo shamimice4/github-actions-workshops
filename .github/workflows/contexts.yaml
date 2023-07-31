@@ -1,20 +1,16 @@
-# https://docs.github.com/en/actions/learn-github-actions/variables#defining-environment-variables-for-a-single-workflow
-
-name: Greeting on variable day
-
-on:
-  workflow_dispatch
-
-env:
-  DAY_OF_WEEK: Monday
-
+# https://docs.github.com/en/actions/learn-github-actions/contexts
+name: Contexts
+on: workflow_dispatch
 jobs:
-  greeting_job:
+  view:
     runs-on: ubuntu-latest
-    env:
-      Greeting: Hello
-    steps:
-      - name: "Say Hello Mona it's Monday"
-        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
-        env:
-          First_Name: Mona
+    steps: 
+    - name: view github Context
+      run: echo "${{ toJSON(github) }}"
+    - name: view job Context
+      run: echo "${{ toJSON(job) }}"
+    - name: view secrets Context
+      run: echo "${{ toJSON(secrets) }}"
+    - name: view needs Context
+      run: echo "${{ toJSON(needs) }}"
+

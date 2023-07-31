@@ -1,0 +1,24 @@
+
+
+name: Conditional Basic Job
+
+on:
+  workflow_dispatch
+
+
+jobs:
+    Create_file:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Create File
+          run: |
+           touch test.txt
+           echo "Hello, world" >> test.txt
+    View_file:
+        runs-on: ubuntu-latest
+        steps:
+            - name: View File Contents
+              run: |
+               cat test.sh
+
+        

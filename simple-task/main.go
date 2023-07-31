@@ -24,14 +24,20 @@ var albums = []album{
 
 func main() {
 	router := gin.Default()
+
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pkng",
 		})
 	})
+
 	router.GET("/albums", getAlbums)
 	router.GET("/albums/:id", getAlbumByID)
 	router.POST("/albums", postAlbums)
+	router.PUT("/albums/:id", updateAlbumByID)
+	router.DELETE("/albums/:id", deleteAlbumByID)
+
+	router.StaticFile("/", "index.html")
 
 	fmt.Println("Starting HTTP Server on port 8080")
 	router.Run("localhost:8080")
@@ -40,21 +46,6 @@ func main() {
 // getAlbums responds with the list of all albums as JSON.
 func getAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, albums)
-}
-
-// postAlbums adds an album from JSON received in the request body.
-func postAlbums(c *gin.Context) {
-	var newAlbum album
-
-	// Call BindJSON to bind the received JSON to
-	// newAlbum.
-	if err := c.BindJSON(&newAlbum); err != nil {
-		return
-	}
-
-	// Add the new album to the slice.
-	albums = append(albums, newAlbum)
-	c.IndentedJSON(http.StatusCreated, newAlbum)
 }
 
 // getAlbumByID locates the album whose ID value matches the id
@@ -71,4 +62,69 @@ func getAlbumByID(c *gin.Context) {
 		}
 	}
 	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
+}
+
+// postAlbums adds an album from JSON received in the request body.
+func postAlbums(c *gin.Context) {
+	var newAlbum album
+
+	// Call BindJSON to bind the received JSON to
+	// newAlbum.
+	if err := c.BindJSON(&newAlbum); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "invalid request"})
+		return
+	}
+
+	// Add the new album to the slice.
+	albums = append(albums, newAlbum)
+	c.IndentedJSON(http.StatusCreated, newAlbum)
+}
+
+// updateAlbumByID updates an album by its ID with the data provided in the request body.
+func updateAlbumByID(c *gin.Context) {
+	id := c.Param("id")
+
+	// Find the index of the album in the slice.
+	index := -1
+	for i, a := range albums {
+		if a.ID == id {
+			index = i
+			break
+		}
+	}
+
+	if index == -1 {
+		c.JSON(http.StatusNotFound, gin.H{"message": "album not found"})
+		return
+	}
+
+	var updatedAlbum album
+
+	// Call BindJSON to bind the received JSON to updatedAlbum.
+	if err := c.BindJSON(&updatedAlbum); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "invalid request"})
+		return
+	}
+
+	// Update the album in the slice.
+	albums[index] = updatedAlbum
+	c.IndentedJSON(http.StatusOK, updatedAlbum)
+}
+
+// deleteAlbumByID deletes an album by its ID.
+func deleteAlbumByID(c *gin.Context) {
+	id := c.Param("id")
+
+	// Loop through the list of albums, looking for
+	// an album whose ID value matches the parameter.
+	for i, a := range albums {
+		if a.ID == id {
+			// Remove the album from the slice by slicing it out.
+			albums = append(albums[:i], albums[i+1:]...)
+			c.JSON(http.StatusOK, gin.H{"message": "album deleted successfully"})
+			return
+		}
+	}
+
+	c.JSON(http.StatusNotFound, gin.H{"message": "album not found"})
 }

@@ -7,19 +7,27 @@ on:
 
 
 jobs:
-    Create_file:
+    create_file:
         runs-on: ubuntu-latest
         steps:
         - name: Create File
           run: |
            touch test.txt
            echo "Hello, world" >> test.txt
-    View_file:
-        needs: Create_file
+
+    view_file:
+        needs: create_file
         runs-on: ubuntu-latest
         steps:
             - name: View File Contents
               run: |
                cat test.sh
 
-        
+    remove_file:
+        needs: [create_file, view_file]
+        if: failure()
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Remove file
+              run: |
+               rm -rf test.txt

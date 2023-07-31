@@ -1,6 +1,6 @@
 # https://docs.github.com/en/actions/learn-github-actions/contexts
 
-name: Greeting on variable day
+name: Environment Variable 
 
 on:
   workflow_dispatch
@@ -18,3 +18,9 @@ jobs:
         run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
         env:
           First_Name: Mona
+  middle_job:
+    runs-on: ubuntu-latest
+    environment:  Testing
+    steps:
+        - name: GET DB Name
+          run: echo $DATABASE_NAME

@@ -1,6 +1,7 @@
 name: Conditional (Step to Step)
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:

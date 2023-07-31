@@ -1,7 +1,6 @@
-name: Conditional (Step to Step)
+name: Continue on error
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
@@ -15,8 +14,9 @@ jobs:
         - name: Read File Contents
           id: file-read
           continue-on-error: true
+          # test.sh file not exists. Without `continue-on-error: true` the whole job will fail.
           run: |
-            cat test.sh
+            cat test.sh       
         - name: Remove file
           run: |
             rm -rf text.txt
@@ -25,4 +25,4 @@ jobs:
             ls -la 
 
                
-               
+        

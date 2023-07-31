@@ -1,10 +1,7 @@
-
-
 name: Conditional Basic Job
 
 on:
   workflow_dispatch
-
 
 jobs:
     create_file:
@@ -14,32 +11,18 @@ jobs:
           run: |
            touch test.txt
            echo "Hello, world" >> test.txt
-
-    view_file:
-        needs: create_file
-        runs-on: ubuntu-latest
-        steps:
-            - name: View File Contents
-              run: |
-               cat test.txt
-
-    list_files:
-        needs: [create_file, view_file]
-        if: failure()
-        runs-on: ubuntu-latest
-        steps: 
-        - name: List
+        - name: Read File Contents
+          id: file-read
           run: |
-            ls -la
+            cat test.txt
+        - name: Remove file
+          if: steps.file-read.outcome == 'success'
+          run: |
+            rm -rf text.txt
+        - name: List file 
+          if: steps.file-read.outcome == 'failure'
+          run: | 
+            ls -la 
 
-    remove_file:
-        needs: [create_file, view_file]
-        if: success()
-        runs-on: ubuntu-latest
-        steps: 
-            - name: Remove file
-              run: |
-               rm -rf test.txt
-    
                
                

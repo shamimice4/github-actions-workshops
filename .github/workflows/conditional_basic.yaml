@@ -21,13 +21,25 @@ jobs:
         steps:
             - name: View File Contents
               run: |
-               cat test.sh
+               cat test.text
+
+    list_files:
+        needs: [create_file, view_file]
+        if: failure()
+        runs-on: ubuntu-latest
+        steps: 
+        - name: List
+          run: |
+            ls -la
 
     remove_file:
         needs: [create_file, view_file]
-        if: failure()
+        if: success()
         runs-on: ubuntu-latest
         steps: 
             - name: Remove file
               run: |
                rm -rf test.txt
+    
+               
+               

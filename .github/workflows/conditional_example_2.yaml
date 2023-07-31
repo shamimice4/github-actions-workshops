@@ -1,0 +1,38 @@
+name: Conditional (Job to Job)
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+    create_file:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Create File
+          run: |
+           touch test.txt
+           echo "Hello, world" >> test.txt
+        - name: Read File Contents
+          id: file-read
+          run: |
+            cat test.tx
+    while_succeed:
+        runs-on: ubuntu-latest
+        needs: ["create_file"]
+        if: success()
+        steps:
+        - name: Greetings
+          run: |
+            echo "Congratulations for your great success!"
+
+    while_failed:
+        runs-on: ubuntu-latest
+        needs: ["create_file"]
+        if: failure()
+        steps:
+        - name: Try Again
+          run: |
+           echo "Don't be sad, Try Again!"
+
+               
+               

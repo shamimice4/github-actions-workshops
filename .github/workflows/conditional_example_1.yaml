@@ -1,7 +1,6 @@
-name: Conditional Basic Job
+name: Conditional (Step to Step)
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:

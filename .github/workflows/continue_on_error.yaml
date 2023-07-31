@@ -1,16 +1,26 @@
-# https://docs.github.com/en/actions/learn-github-actions/contexts
-name: Contexts
-on: workflow_dispatch
-jobs:
-  view:
-    runs-on: ubuntu-latest
-    steps: 
-    - name: view github Context
-      run: echo "${{ toJSON(github) }}"
-    - name: view job Context
-      run: echo "${{ toJSON(job) }}"
-    - name: view secrets Context
-      run: echo "${{ toJSON(secrets) }}"
-    - name: view needs Context
-      run: echo "${{ toJSON(needs) }}"
+name: Conditional (Step to Step)
 
+on:
+  workflow_dispatch:
+
+jobs:
+    create_file:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Create File
+          run: |
+           touch test.txt
+           echo "Hello, world" >> test.txt
+        - name: Read File Contents
+          id: file-read
+          run: |
+            cat test.sh
+        - name: Remove file
+          run: |
+            rm -rf text.txt
+        - name: List file 
+          run: | 
+            ls -la 
+
+               
+               

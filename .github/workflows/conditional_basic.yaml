@@ -15,6 +15,7 @@ jobs:
            touch test.txt
            echo "Hello, world" >> test.txt
     View_file:
+        needs: Create_file
         runs-on: ubuntu-latest
         steps:
             - name: View File Contents

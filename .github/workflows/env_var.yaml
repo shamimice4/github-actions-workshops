@@ -1,4 +1,5 @@
 # https://docs.github.com/en/actions/learn-github-actions/contexts
+# https://www.udemy.com/course/github-actions-the-complete-guide/learn/lecture/34140100#overview
 
 name: Environment Variable 
 
@@ -18,12 +19,13 @@ jobs:
         run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
         env:
           First_Name: Mona
-  middle_job:
+
+  with_environemt_defined:
     runs-on: ubuntu-latest
     environment:  Testing
     steps:
-        - name: GET DB Name
-          run: echo $DATABASE_NAME
+    - name: GET DB Name
+      run: echo $DATABASE_NAME
 
   without_environment_defined_job:
     runs-on: ubuntu-latest

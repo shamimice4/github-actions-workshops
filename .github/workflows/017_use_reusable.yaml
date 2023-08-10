@@ -1,6 +1,6 @@
 name: Reusable
 on:
-  push:
+  #push:
   workflow_dispatch:
 
 jobs:

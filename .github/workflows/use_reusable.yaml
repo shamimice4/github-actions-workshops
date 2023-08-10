@@ -11,5 +11,4 @@ jobs:
               run: |
                ls -la
             - name: call reusable workflow
-              uses: ./.github/workflows/reusable.yaml
-    
+              uses: shamimice03/github-actions-lab/.github/workflows/reusable.yaml

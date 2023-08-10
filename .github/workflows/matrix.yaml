@@ -1,0 +1,32 @@
+name: matrix test
+on:
+    push:
+    workflow_dispatch:
+
+
+jobs:
+  build:
+    strategy:
+        matrix:
+            go-version: [1.16,1.20]
+            os: ["ubuntu-latest","windows-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Step 1: Checkout the code from the repository.
+      - uses: actions/checkout@v3
+
+      # Step 2: Set up the Go environment with the specified version.
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      # Step 3: Build the Go project using the "go build" command.
+      - name: Build
+        working-directory: ./simple-task
+        run: go build -v .
+
+      # Step 4: Run tests for the Go project using the "go test" command.
+      - name: Test
+        working-directory: ./simple-task
+        run: go test -v .

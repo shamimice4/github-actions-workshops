@@ -1,6 +1,6 @@
 name: matrix with include and exclude
 on:
-    push:
+    #push:
     workflow_dispatch:
 
 jobs:

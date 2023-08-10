@@ -228,3 +228,56 @@ jobs:
 
 
 
+## 008_artifact.yaml
+
+- Create a policy:
+
+  ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Effect": "Allow",
+              "Action": [
+                  "s3:GetObject",
+                  "s3:PutObject",
+                  "s3:DeleteObject"
+              ],
+              "Resource": [
+                  "arn:aws:s3:::<BUCKET-NAME>/*"
+              ]
+          },
+          {
+              "Effect": "Allow",
+              "Action": "s3:ListBucket",
+              "Resource": "arn:aws:s3:::<BUCKET-NAME>"
+          }
+      ]
+    }
+  ```
+- Create a role with above policy and following `Trust relationships`
+
+  ```json
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "Federated": "arn:aws:iam::111111111132:oidc-provider/token.actions.githubusercontent.com"
+        },
+        "Action": "sts:AssumeRoleWithWebIdentity",
+        "Condition": {
+          "StringEquals": {
+            "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+          },
+          "StringLike": {
+            "token.actions.githubusercontent.com:sub": "repo:shamimice03/github-actions-lab:ref:refs/heads/main"
+          }
+        }
+      }
+    ]
+  }
+  ```
+
+  - Add `Role_ARN`, `Region`, `Bucket-Name` to the repo `secrets`

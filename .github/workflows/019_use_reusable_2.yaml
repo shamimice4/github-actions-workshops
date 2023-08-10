@@ -1,7 +1,7 @@
 name: Use_Reusable_2
 
 on: 
-    push:
+    #push:
     workflow_dispatch:
 
 jobs:

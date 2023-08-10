@@ -10,3 +10,12 @@ jobs:
       file_name: "anything.txt"
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
+
+  print_call_result:
+    needs: call_reusable_workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deploy output
+        run: |
+          echo "${{ needs.call_reusable_workflow.outputs }}"
+          

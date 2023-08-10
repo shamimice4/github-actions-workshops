@@ -8,9 +8,15 @@ on:
     secrets:
         token:
           required: true
+    outputs:                    # https://docs.github.com/en/actions/learn-github-actions/contexts#jobs-context
+      result:
+        description: The result of the script job
+        value: ${{ jobs.script.outputs.outcome }}
 
 jobs:
   script:
+    outputs:
+      outcome: ${{ steps.output-step.outputs.step-result }} # <--------------output access
     runs-on: ubuntu-latest
     steps:
       - name: create file
@@ -21,4 +27,8 @@ jobs:
 
       - name: secret used
         run: |
-         cat ${{ secrets.token }}
+         echo ${{ secrets.token }}
+      - name: set output
+        id: output-step  # <--------------output setup
+        run: |
+          echo "step-result=success" >> $GITHUB_OUTPUT  

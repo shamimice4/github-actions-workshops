@@ -47,6 +47,6 @@ jobs:
     steps: 
         - name: result of deploy step
           run: |
-            echo "${{ needs.deploy.outputs.result }}"
+            echo "${{ needs.deploy.result }}"
 
           

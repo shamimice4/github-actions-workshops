@@ -7,6 +7,12 @@ on:
             required: true
             default: artifact
             type: string
+      outputs:
+        result:
+            description: Output of the deploy job
+            value: ${{ jobs.deploy.result}}
+
+
 
 jobs:  
   deploy:

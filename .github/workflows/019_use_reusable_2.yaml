@@ -32,3 +32,5 @@ jobs:
  deploy:
     needs: build
     uses: shamimice03/github-actions-lab/.github/workflows/018_reusable_2.yaml@main
+    with:
+        artifact-name: webapp-artifact

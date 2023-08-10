@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: ${{ matrix.go-version }}
+          cache-dependency-path: simple-task/go.sum
 
       # Step 3: Build the Go project using the "go build" command.
       - name: Build

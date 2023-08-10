@@ -1,14 +1,14 @@
 name: Reusable
 on:
-    push:
-    workflow_dispatch:
+  push:
+  workflow_dispatch:
 
 jobs:
-    script:
-        runs-on: ubuntu-latest
-        steps:
-            - name: List files
-              run: |
-               ls -la
-            - name: call reusable workflow
-              uses: ./.github/workflows/reusable.yaml
+  script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List files
+        run: |
+          ls -la
+      - name: Call reusable workflow
+        uses: ./.github/workflows/reusable.yaml

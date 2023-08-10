@@ -1,13 +1,11 @@
 name: Reusable
 on:
-    workflow_call
+  workflow_call:
 
 jobs:
-    script:
-        runs-on: ubuntu-latest
-        steps:
-            - name: create file
-              run: |
-                touch text.txt
-
-    
+  script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create file
+        run: |
+          touch text.txt

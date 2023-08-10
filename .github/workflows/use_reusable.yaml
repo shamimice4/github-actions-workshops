@@ -4,15 +4,5 @@ on:
   workflow_dispatch:
 
 jobs:
-  script:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: List files
-        run: |
-          ls -la
-          cd .github/workflows
-          ls -la
-      - name: Call reusable workflow
+  call_reusable_workflow:
         uses: shamimice03/github-actions-lab/.github/workflows/reusable.yaml@main

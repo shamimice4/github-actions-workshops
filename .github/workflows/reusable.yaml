@@ -6,8 +6,8 @@ jobs:
   script:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      
-      - name: Call reusable workflow
-        uses: ./.github/workflows/reusable.yaml
+      - name: create file
+        run: |
+          touch test.txt
+          echo "Hello, World" > test.txt
+          cat test.txt

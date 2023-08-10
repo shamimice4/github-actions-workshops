@@ -18,3 +18,7 @@ jobs:
           touch ${{ inputs.file_name }}
           echo "Hello, World" > ${{ inputs.file_name }}
           cat ${{ inputs.file_name }}
+
+      - name: secret used
+        run: |
+         cat ${{ secrets.token }}

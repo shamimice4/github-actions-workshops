@@ -12,7 +12,7 @@ jobs:
       - name: List files
         run: |
           ls -la
-          cd .github
+          cd .github/workflows
           ls -la
       - name: Call reusable workflow
         uses: ./.github/workflows/reusable.yaml

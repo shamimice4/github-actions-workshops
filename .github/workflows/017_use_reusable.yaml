@@ -5,4 +5,4 @@ on:
 
 jobs:
   call_reusable_workflow:
-        uses: shamimice03/github-actions-lab/.github/workflows/reusable.yaml@main
+        uses: shamimice03/github-actions-lab/.github/workflows/016_reusable.yaml@main

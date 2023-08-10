@@ -283,3 +283,12 @@ jobs:
   ```
 
   - Add `Role_ARN`, `Region`, `Bucket-Name` to the repo `secrets`
+
+  ## `018_reusable_2.yaml` and `019_use_reusabel_2.yaml`
+
+  -  Similar steps: `008_artifact.yaml`
+    - OIDC
+    - S3 Bucket
+    - IAM Policy
+    - IAM Role
+    - Repo `secrets` setup

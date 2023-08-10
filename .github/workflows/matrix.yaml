@@ -25,7 +25,6 @@ jobs:
       - name: Build
         working-directory: ./simple-task
         run: |
-          go mod download
           go build -v .
 
       # Step 4: Run tests for the Go project using the "go test" command.

@@ -17,5 +17,5 @@ jobs:
     steps:
       - name: Print deploy output
         run: |
-          echo "${{ needs.call_reusable_workflow.outputs }}"
+          echo "${{ needs.call_reusable_workflow.outputs.result }}"
           

@@ -30,6 +30,9 @@ jobs:
             path: ./simple-task/webapp
 
  deploy:
+    permissions:
+        id-token: write   # This is required for requesting the JWT
+        contents: read    # This is required for actions/checkout
     needs: build
     uses: shamimice03/github-actions-lab/.github/workflows/018_reusable_2.yaml@main
     with:

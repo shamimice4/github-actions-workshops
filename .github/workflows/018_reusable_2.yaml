@@ -7,13 +7,14 @@ on:
             required: true
             default: artifact
             type: string
-jobs:    
+
+jobs:  
   deploy:
     runs-on: ubuntu-latest
-    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
-    # permissions:
-    #     id-token: write
-    #     contents: read
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint. 
+    permissions:
+        id-token: write   # This is required for requesting the JWT
+        contents: read    # This is required for actions/checkout
     steps:
         - name: Get artifacts
           uses: actions/download-artifact@v3

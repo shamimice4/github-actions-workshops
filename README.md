@@ -224,11 +224,13 @@ jobs:
 ```
 
 ## Docs:
+
 - [about-github-hosted-runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners)
 
 
 
 ## 008_artifact.yaml
+- [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)
 
 - Create a policy:
 

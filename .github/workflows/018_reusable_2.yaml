@@ -1,4 +1,4 @@
-name: reusable_02
+name: reusable_02_deploy_to_s3
 on: 
     workflow_call:
       inputs:
@@ -11,10 +11,6 @@ on:
 jobs:  
   deploy:
     runs-on: ubuntu-latest
-    # These permissions are needed to interact with GitHub's OIDC Token endpoint. 
-    # permissions:
-    #     id-token: write   # This is required for requesting the JWT
-    #     contents: read    # This is required for actions/checkout
     steps:
         - name: Get artifacts
           uses: actions/download-artifact@v3

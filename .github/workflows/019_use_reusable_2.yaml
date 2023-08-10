@@ -30,11 +30,14 @@ jobs:
             path: ./simple-task/webapp
 
  deploy:
+    needs: build
+    # Assigning permissions to job - https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint. 
     permissions:
         id-token: write   # This is required for requesting the JWT
-        contents: read    # This is required for actions/checkout
-    needs: build
+        contents: read    # Permits an action to list the commitst
+    secrets: inherit
     uses: shamimice03/github-actions-lab/.github/workflows/018_reusable_2.yaml@main
     with:
         artifact-name: webapp-artifact
-    #secrets: inherit
+    

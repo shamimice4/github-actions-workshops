@@ -29,4 +29,6 @@ jobs:
             name: webapp-artifact
             path: ./simple-task/webapp
 
-
+ deploy:
+    needs: build
+    uses: shamimice03/github-actions-lab/.github/workflows/018_reusable_2.yaml@main

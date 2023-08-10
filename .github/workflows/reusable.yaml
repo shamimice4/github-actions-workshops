@@ -1,0 +1,13 @@
+name: Reusable
+on:
+    workflow_call
+
+jobs:
+    script:
+        runs-on: ubuntu-latest
+        steps:
+            - name: create file
+              run: |
+               touch text.txt
+
+    

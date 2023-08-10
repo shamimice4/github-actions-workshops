@@ -1,7 +1,7 @@
 name: Use_Reusable_2
 
 on: 
-    #push:
+    push:
     workflow_dispatch:
 
 jobs:
@@ -41,3 +41,12 @@ jobs:
     with:
         artifact-name: webapp-artifact
     
+ result:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps: 
+        - name: result of deploy step
+          run: |
+            echo "${{ needs.deploy.outputs.result }}"
+
+          

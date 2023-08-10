@@ -8,3 +8,5 @@ jobs:
     uses: shamimice03/github-actions-lab/.github/workflows/016_reusable.yaml@main
     with:
       file_name: "anything.txt"
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}

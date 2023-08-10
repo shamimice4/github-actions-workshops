@@ -36,7 +36,7 @@ jobs:
     permissions:
         id-token: write   # This is required for requesting the JWT
         contents: read    # Permits an action to list the commitst
-    secrets: inherit
+    secrets: inherit      # Use the inherit keyword to pass all the calling workflow's secrets to the called workflow. 
     uses: shamimice03/github-actions-lab/.github/workflows/018_reusable_2.yaml@main
     with:
         artifact-name: webapp-artifact

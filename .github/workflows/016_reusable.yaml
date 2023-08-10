@@ -1,6 +1,13 @@
 name: Reusable
 on:
   workflow_call:
+    inputs:
+      file_name:
+        required: true
+        type: string
+    secrets:
+        token:
+          required: true
 
 jobs:
   script:
@@ -8,6 +15,6 @@ jobs:
     steps:
       - name: create file
         run: |
-          touch test.txt
-          echo "Hello, World" > test.txt
-          cat test.txt
+          touch ${{ inputs.file_name }}
+          echo "Hello, World" > ${{ inputs.file_name }}
+          cat ${{ inputs.file_name }}

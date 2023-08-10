@@ -23,4 +23,4 @@ jobs:
       - name: Build
         working-directory: ./simple-task
         run: |
-          go build -t .
+         go build -v .

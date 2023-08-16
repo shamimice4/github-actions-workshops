@@ -1,0 +1,26 @@
+name: checkout test
+
+on:
+    push: 
+        branches:
+           - main
+           - dev
+jobs:
+  basic:
+    if: github.action.push.head.ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Code
+        uses: actions/checkout@v3
+
+  different_branch:
+    if: github.action.push.head.ref == 'dev'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Code
+      uses: actions/checkout@v3
+      with: 
+        path: dev
+    
+        
+        

@@ -5,6 +5,7 @@ on:
         branches:
            - main
            - dev
+    workflow_dispatch:
 jobs:
   basic:
     if: github.action.push.head.ref == 'main'

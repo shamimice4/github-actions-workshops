@@ -26,7 +26,7 @@ jobs:
       with:
         ref: ${{ github.ref }}
     - run: |
-       echo dev.txt
+       cat dev.txt
 
   another_branch:
    name: branch ${{ github.head_ref }}
@@ -36,7 +36,7 @@ jobs:
       with:
         ref: ${{ github.head_ref }}
     - run: |
-       echo dev.txt
+       cat dev.txt
 
   yet_another:
    name: branch ${{ github.ref_name }} # main or dev
@@ -46,4 +46,4 @@ jobs:
       with:
         ref: ${{ github.ref_name }}
     - run: |
-       echo dev.txt
+       cat dev.txt

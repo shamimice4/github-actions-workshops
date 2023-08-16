@@ -1,4 +1,4 @@
-# GitHub Actions Lab - 
+# GitHub Actions Lab ->
 
 ## first-action.yaml
 

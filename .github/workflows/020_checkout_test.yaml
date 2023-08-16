@@ -51,3 +51,4 @@ jobs:
         ref: ${{ github.event.pull_request.head.ref }}
     - run: |
         cat dev.txt
+        echo ${{ github.event.pull_request.head.ref }}

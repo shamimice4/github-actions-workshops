@@ -8,7 +8,6 @@ on:
     workflow_dispatch:
 jobs:
   basic:
-    if: github.action.push.head.ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Download Code

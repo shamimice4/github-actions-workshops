@@ -1,8 +1,8 @@
-# GitHub Actions Lab
+# GitHub Actions Lab - 
 
 ## first-action.yaml
 
-Following is a simple GitHub Actions workflow named `First Workflow`. It defines one job named `first-job` to print a greeting and a goodbye message.
+Following is a simple GitHub Actions workflow named as `First Workflow`. It defines one job named `first-job` to print a greeting and a goodbye message.
 
 ```yaml
 name: First Workflow

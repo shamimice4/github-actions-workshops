@@ -2,7 +2,7 @@ name: Greetings
 on:
   issues:
   pull_request_target:
-        types: [ opened, closed ]
+        types: [ opened ]
   workflow_dispatch:
     
 jobs:

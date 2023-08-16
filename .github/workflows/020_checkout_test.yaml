@@ -29,4 +29,5 @@ jobs:
   another_branch:
    name: branch ${{ github.head_ref }}
    runs-on: ubuntu-latest
-  
+   steps:
+    - uses: actions/checkout@v3

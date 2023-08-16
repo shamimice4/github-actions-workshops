@@ -6,30 +6,46 @@ on:
            - main
            - dev
     workflow_dispatch:
+    pull_request:
+
 jobs:
   basic:
     runs-on: ubuntu-latest
     steps:
       - name: Download Code        # branch name
         uses: actions/checkout@v3  # echo ${GITHUB_REF} refs/heads/main
-      - name: view                 # echo ${GITHUB_REF##*/}  main
+      - name: view                 # echo ${GITHUB_REF##*/}  main 
         run: |
          echo ${GITHUB_REF} 
          echo ${GITHUB_REF##*/}
 
-  different_branch:
-    name:  branch ${{ github.ref }}
+  on_push:
+    name:  branch ${{ github.ref }} # refs/heads/main or refs/heads/dev
     runs-on: ubuntu-latest
     steps:
     - name: Download Code
       uses: actions/checkout@v3
       with:
         ref: ${{ github.ref }}
+    # - run: |
+    #    cat dev.txt
 
-  another_branch:
-   name: branch ${{ github.head_ref }}
+  yet_another:
+   name: branch ${{ github.ref_name }} # main or dev
    runs-on: ubuntu-latest
    steps:
     - uses: actions/checkout@v3
       with:
-        ref: ${{ github.head_ref }}
+        ref: ${{ github.ref_name }}
+    # - run: |
+    #    cat dev.txt
+
+  and_another:
+   name: branch ${{ github.event.pull_request.head.ref }}
+   runs-on: ubuntu-latest
+   steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    # - run: |
+    #     cat dev.txt

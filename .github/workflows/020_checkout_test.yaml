@@ -23,5 +23,5 @@ jobs:
     - name: Download Code
       uses: actions/checkout@v3
       with:
-        ref: $GITHUB_REF##*/
+        ref: ${{ github.head_ref }}
         

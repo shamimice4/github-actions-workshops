@@ -1,11 +1,11 @@
-# GitHub Actions Lab
+# GitHub Actions Workshops
 
 ## first-action.yaml
 
 Following is a simple GitHub Actions workflow named as `First Workflow`. It defines one job named `first-job` to print a greeting and a goodbye message.
 
 ```yaml
-name: First Workflow
+name: First Workflow 
 
 # Define the events that trigger this workflow to run.
 # 'workflow_dispatch' event allows manual triggering of the workflow from the GitHub Actions UI.

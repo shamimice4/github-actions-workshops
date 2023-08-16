@@ -18,10 +18,15 @@ jobs:
          echo ${GITHUB_REF##*/}
 
   different_branch:
+    name:  branch ${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
     - name: Download Code
       uses: actions/checkout@v3
       with:
         ref: ${{ github.head_ref }}
-        
+
+  another_branch:
+   name: branch ${{ github.head_ref }}
+   runs-on: ubuntu-latest
+  

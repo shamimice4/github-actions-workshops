@@ -25,6 +25,8 @@ jobs:
       uses: actions/checkout@v3
       with:
         ref: ${{ github.ref }}
+    - run: |
+       echo dev.txt
 
   another_branch:
    name: branch ${{ github.head_ref }}
@@ -33,11 +35,15 @@ jobs:
     - uses: actions/checkout@v3
       with:
         ref: ${{ github.head_ref }}
+    - run: |
+       echo dev.txt
 
   yet_another:
-   name: branch ${{ github.ref_name }}
+   name: branch ${{ github.ref_name }} # main or dev
    runs-on: ubuntu-latest
    steps:
     - uses: actions/checkout@v3
       with:
         ref: ${{ github.ref_name }}
+    - run: |
+       echo dev.txt

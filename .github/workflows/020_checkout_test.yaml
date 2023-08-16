@@ -12,9 +12,11 @@ jobs:
     steps:
       - name: Download Code
         uses: actions/checkout@v3
+      - name: view
+        run: |
+          echo ${{  github.action.push.head.ref }}
 
   different_branch:
-    if: github.action.push.head.ref == 'dev'
     runs-on: ubuntu-latest
     steps:
     - name: Download Code

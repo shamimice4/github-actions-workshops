@@ -5,10 +5,15 @@ on:
         branches:
            - main
            - dev
+
+    pull_request_target:
+        branches:
+          - main
+          - dev
+        types:
+          ["closed"]
+
     workflow_dispatch:
-    pull_request:
-      types:
-        ["closed"]
 
 jobs:
   basic:
@@ -22,6 +27,7 @@ jobs:
          echo ${GITHUB_REF##*/}
 
   on_push:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     name:  branch ${{ github.ref }} # refs/heads/main or refs/heads/dev
     runs-on: ubuntu-latest
     steps:
@@ -29,25 +35,41 @@ jobs:
       uses: actions/checkout@v3
       with:
         ref: ${{ github.ref }}
-    # - run: |
-    #    cat dev.txt
+    - run: |
+       ls -la
 
   yet_another:
+   if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
    name: branch ${{ github.ref_name }} # main or dev
    runs-on: ubuntu-latest
    steps:
     - uses: actions/checkout@v3
       with:
         ref: ${{ github.ref_name }}
-    # - run: |
-    #    cat dev.txt
+    - run: |
+        ls -la
 
   and_another:
-   name: branch ${{ github.event.pull_request.head.ref }}
+   if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+   name: ${{ github.event.pull_request.head.ref }} - PR repo and branch 
    runs-on: ubuntu-latest
    steps:
     - uses: actions/checkout@v3
       with:
-        ref: ${{ github.event.pull_request.head.ref }}
-    # - run: |
-    #     cat dev.txt
+        ref: ${{ github.event.pull_request.head.ref }}  # PR - branch
+        repository: ${{ github.event.pull_request.head.repo.full_name }} # PR - repo
+    - run: |
+        ls -la
+        echo ${{ github.event.pull_request.head.ref }}
+
+  once_more:
+   if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+   name: branch ${{ github.base_ref}}
+   runs-on: ubuntu-latest
+   steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.base_ref }}  
+    - run: |
+        ls -la
+        echo ${{ github.base_ref}}

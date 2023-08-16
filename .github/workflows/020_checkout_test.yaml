@@ -24,10 +24,12 @@ jobs:
     - name: Download Code
       uses: actions/checkout@v3
       with:
-        ref: ${{ github.head_ref }}
+        ref: ${{ github.ref }}
 
   another_branch:
    name: branch ${{ github.head_ref }}
    runs-on: ubuntu-latest
    steps:
     - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}

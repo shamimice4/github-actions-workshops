@@ -22,6 +22,7 @@ jobs:
          echo ${GITHUB_REF##*/}
 
   on_push:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     name:  branch ${{ github.ref }} # refs/heads/main or refs/heads/dev
     runs-on: ubuntu-latest
     steps:
@@ -33,6 +34,7 @@ jobs:
        cat dev.txt
 
   yet_another:
+   if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
    name: branch ${{ github.ref_name }} # main or dev
    runs-on: ubuntu-latest
    steps:
@@ -43,6 +45,7 @@ jobs:
        cat dev.txt
 
   and_another:
+   if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
    name: branch ${{ github.event.pull_request.head.ref }}
    runs-on: ubuntu-latest
    steps:

@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Download Code        # branch name
         uses: actions/checkout@v3  # echo ${GITHUB_REF} refs/heads/main
-      - name: view                 # echo ${GITHUB_REF##*/}  main
+      - name: view                 # echo ${GITHUB_REF##*/}  main 
         run: |
          echo ${GITHUB_REF} 
          echo ${GITHUB_REF##*/}

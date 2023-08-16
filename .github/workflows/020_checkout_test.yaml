@@ -10,10 +10,11 @@ jobs:
   basic:
     runs-on: ubuntu-latest
     steps:
-      - name: Download Code
-        uses: actions/checkout@v3
-      - name: view
+      - name: Download Code        # branch name
+        uses: actions/checkout@v3  # echo ${GITHUB_REF} refs/heads/main
+      - name: view                 # echo ${GITHUB_REF##*/}  main
         run: |
+         echo ${GITHUB_REF} 
          echo ${GITHUB_REF##*/}
 
   different_branch:
@@ -21,8 +22,6 @@ jobs:
     steps:
     - name: Download Code
       uses: actions/checkout@v3
-      with: 
-        path: dev
-    
-        
+      with:
+        ref: GITHUB_REF##*/
         
